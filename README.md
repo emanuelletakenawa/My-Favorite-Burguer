@@ -33,6 +33,7 @@ My Favorite Burguer é uma simulação de uma hamburgueria e consiste em uma lis
 
 ## 👩🏻‍💻Tecnologias utilizadas
 - TypeScript
+- React
 
 <hr>
 
