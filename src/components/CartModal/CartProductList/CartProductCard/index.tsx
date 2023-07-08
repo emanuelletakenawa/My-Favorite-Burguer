@@ -17,10 +17,11 @@ const CartProductCard = ({
   product,
   onUpdateQuantity,
 }: ICartProductCardProps) => {
-  const { removeFromCart } = useContext(CartContext);
+  const { removeFromCart, addToCart } = useContext(CartContext);
 
   const handleIncrement = () => {
     onUpdateQuantity(product.id, product.quantity + 1);
+    addToCart(product);
   };
 
   const handleDecrement = () => {

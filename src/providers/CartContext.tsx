@@ -41,10 +41,6 @@ const CartProvider = ({ children }: ICartProviderProps) => {
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
   const getProducts = async () => {
     try {
       const response = await api.get("products");
@@ -56,7 +52,7 @@ const CartProvider = ({ children }: ICartProviderProps) => {
   };
 
   const addToCart = (product: IProduct) => {
-    let item = cart.find((productFound) => productFound.id == product.id);
+    let item = cart.find((productFound) => productFound.id === product.id);
     if (item) {
       const updatedCart = cart.map((item) => {
         if (item.id === product.id) {
@@ -68,8 +64,13 @@ const CartProvider = ({ children }: ICartProviderProps) => {
         return item;
       });
       setCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
+      localStorage.setItem(
+        "cart",
+        JSON.stringify([...cart, { ...product, quantity: 1 }])
+      );
     }
     toast.success(`${product.name} foi adicionado ao carrinho`);
   };
@@ -80,6 +81,7 @@ const CartProvider = ({ children }: ICartProviderProps) => {
       const newCart = [...cart];
       newCart.splice(itemId, 1);
       setCart(newCart);
+      localStorage.setItem("cart", JSON.stringify(newCart));
       toast.success("Produto removido com sucesso!");
     } else {
       toast.error("Ops! Produto não encontrado");
@@ -115,6 +117,7 @@ const CartProvider = ({ children }: ICartProviderProps) => {
       return item;
     });
     setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   return (
