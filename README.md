@@ -9,7 +9,7 @@
 
 ## 🖇️Para acessar a demonstração do projeto
 
-[Clique aqui](https:/)
+[Clique aqui](https://my-favorite-burguer.vercel.app/)
 
 
 
